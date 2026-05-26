@@ -6,867 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>عيد أضحى مبارك يا زوزو 🐑</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
-    <style>
-        /* ===========================
-           TOKENS - NEW PREMIUM PALETTE
-        =========================== */
-        :root {
-            --bg-dark: #080c18;
-            --bg-mid: #0e1e35;
-            --bg-card: rgba(255, 255, 255, 0.06);
-            --indigo: #1a3a6b;
-            --rose: #c4688a;
-            --rose-light: #e8a0b8;
-            --gold: #e8b835;
-            --gold-light: #f5d878;
-            --champagne: #f0d9b5;
-            --teal: #20adb8;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.07);
-            --glass-border: rgba(255, 255, 255, 0.14);
-            --radius: 24px;
-            --shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
-            --navy-light: #162447;
-            --rose-gold: #b76e79;
-        }
-
-        *,
-        *::before,
-        *::after {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Cairo', sans-serif;
-            background: var(--bg-dark);
-            color: var(--white);
-            overflow-x: hidden;
-            cursor: none;
-        }
-
-        .custom-cursor {
-            position: fixed;
-            pointer-events: none;
-            z-index: 99999;
-            font-size: 1.2rem;
-            transform: translate(-50%, -50%);
-            transition: transform 0.08s ease;
-            mix-blend-mode: normal;
-            filter: drop-shadow(0 0 6px gold);
-        }
-
-        .cursor-trail {
-            position: fixed;
-            pointer-events: none;
-            z-index: 99998;
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            background: radial-gradient(circle, rgba(232, 184, 53, 0.4), transparent);
-            transform: translate(-50%, -50%);
-            transition: all 0.15s ease;
-        }
-
-        .loader {
-            position: fixed;
-            inset: 0;
-            background: var(--bg-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        .loader-content {
-            text-align: center;
-        }
-
-        .loader-sheep-wrap {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 16px;
-        }
-
-        .loader-sheep {
-            font-size: 5rem;
-            display: block;
-            animation: sheepBounce 0.8s ease-in-out infinite alternate;
-        }
-
-        .loader-stars {
-            position: absolute;
-            top: -10px;
-            right: -20px;
-            display: flex;
-            gap: 4px;
-            animation: rotate 4s linear infinite;
-        }
-
-        .loader-stars span {
-            font-size: 0.9rem;
-        }
-
-        .loader-name {
-            font-size: 3rem;
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--rose-light), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-            animation: namePulse 1.5s ease-in-out infinite;
-        }
-
-        .loader-text {
-            font-size: 0.95rem;
-            color: var(--champagne);
-            opacity: 0.7;
-            margin-bottom: 24px;
-        }
-
-        .loader-bar {
-            width: 200px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-        .loader-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--rose), var(--gold));
-            border-radius: 2px;
-            animation: fillBar 2s ease-out forwards;
-        }
-
-        @keyframes fillBar {
-            from {
-                width: 0;
-            }
-
-            to {
-                width: 100%;
-            }
-        }
-
-        @keyframes sheepBounce {
-            from {
-                transform: translateY(0);
-            }
-
-            to {
-                transform: translateY(-20px);
-            }
-        }
-
-        @keyframes rotate {
-            from {
-                transform: rotate(0deg);
-            }
-
-            to {
-                transform: rotate(360deg);
-            }
-        }
-
-        @keyframes namePulse {
-
-            0%,
-            100% {
-                filter: brightness(1);
-            }
-
-            50% {
-                filter: brightness(1.4);
-            }
-        }
-
-        #particles {
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            background: radial-gradient(ellipse at 30% 30%, #1a2748 0%, var(--bg-dark) 70%);
-        }
-
-        .parallax-bg {
-            position: absolute;
-            inset: -50px;
-            background: url('bg.png') center/cover no-repeat;
-            opacity: 0.05;
-            will-change: transform;
-            transition: transform 0.1s;
-        }
-
-        .hero-center {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            padding: 20px;
-        }
-
-        .sheep-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 10px;
-        }
-
-        .main-sheep {
-            width: min(280px, 55vw);
-            filter: drop-shadow(0 10px 30px rgba(196, 104, 138, 0.4));
-            animation: floatSheep 3.5s ease-in-out infinite;
-            cursor: pointer;
-        }
-
-        .sheep-shadow {
-            width: 60%;
-            height: 18px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 50%;
-            margin: -8px auto 0;
-            filter: blur(8px);
-            animation: shadowPulse 3.5s ease-in-out infinite;
-        }
-
-        @keyframes floatSheep {
-
-            0%,
-            100% {
-                transform: translateY(0) rotate(1.5deg);
-            }
-
-            50% {
-                transform: translateY(-16px) rotate(-1.5deg);
-            }
-        }
-
-        @keyframes shadowPulse {
-
-            0%,
-            100% {
-                transform: scaleX(1);
-                opacity: 0.4;
-            }
-
-            50% {
-                transform: scaleX(0.8);
-                opacity: 0.2;
-            }
-        }
-
-        .hero-title {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            line-height: 1;
-            margin: 16px 0 8px;
-        }
-
-        .line1 {
-            font-size: clamp(1.8rem, 5vw, 3.5rem);
-            font-weight: 300;
-            opacity: 0.8;
-        }
-
-        .line2 {
-            font-size: clamp(3.5rem, 11vw, 7.5rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold), #c8890a);
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 4px 12px rgba(232, 184, 53, 0.45));
-        }
-
-        .line3 {
-            font-size: clamp(2.2rem, 7vw, 4.5rem);
-            font-weight: 700;
-        }
-
-        .hero-sub {
-            font-size: clamp(1rem, 2.5vw, 1.3rem);
-            font-weight: 300;
-            opacity: 0.65;
-            margin-bottom: 10px;
-        }
-
-        .typewriter-name {
-            font-size: clamp(1.6rem, 4vw, 2.5rem);
-            font-weight: 900;
-            color: var(--rose-light);
-            margin-bottom: 28px;
-            min-height: 3rem;
-            filter: drop-shadow(0 0 10px rgba(196, 104, 138, 0.6));
-        }
-
-        .cta-button {
-            position: relative;
-            display: inline-block;
-            padding: 16px 48px;
-            background: linear-gradient(135deg, var(--rose), #9b3060);
-            color: white;
-            font-family: 'Cairo', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-decoration: none;
-            border-radius: 50px;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 8px 30px rgba(196, 104, 138, 0.4);
-            border: none;
-            cursor: pointer;
-        }
-
-        .cta-button:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 14px 40px rgba(196, 104, 138, 0.6);
-        }
-
-        .btn-glow {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), transparent);
-            border-radius: 50px;
-        }
-
-        .section {
-            position: relative;
-            padding: 110px 20px;
-            z-index: 1;
-        }
-
-        .section-wrap {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: clamp(1.9rem, 5vw, 3.2rem);
-            font-weight: 900;
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .gold {
-            color: var(--gold);
-        }
-
-        .text-center {
-            text-align: center;
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .countdown-grid {
-            display: flex;
-            justify-content: center;
-            gap: clamp(12px, 3vw, 30px);
-            flex-wrap: wrap;
-        }
-
-        .countdown-box {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            padding: 30px 40px;
-            text-align: center;
-            min-width: 100px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .count-num {
-            display: block;
-            font-size: clamp(2.5rem, 7vw, 4.5rem);
-            font-weight: 900;
-            background: linear-gradient(135deg, var(--gold-light), var(--gold));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .count-label {
-            font-size: 0.9rem;
-            color: var(--champagne);
-            opacity: 0.7;
-        }
-
-        .envelope-wrapper {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto;
-            perspective: 1500px;
-            cursor: pointer;
-        }
-
-        .envelope {
-            position: relative;
-            width: 100%;
-            height: 380px;
-            background: var(--navy-light);
-            border-radius: 0 0 15px 15px;
-            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .envelope.open {
-            transform: translateY(50px);
-        }
-
-        .flap {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 200px;
-            background: #1a2a4a;
-            clip-path: polygon(0 0, 50% 100%, 100% 0);
-            z-index: 3;
-            transform-origin: top;
-            transition: transform 0.6s;
-        }
-
-        .envelope.open .flap {
-            transform: rotateX(180deg);
-            z-index: 1;
-        }
-
-        .pocket {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, var(--navy-light), #1a2a4a);
-            clip-path: polygon(0 0, 0 100%, 100% 100%, 100% 0, 50% 50%);
-            z-index: 4;
-        }
-
-        .letter {
-            position: absolute;
-            bottom: 20px;
-            left: 10%;
-            width: 80%;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            opacity: 0;
-            transform: translateY(50px) scale(0.9);
-            transition: all 0.8s 0.3s;
-            color: #1a2a4a;
-            text-align: center;
-        }
-
-        .envelope.open .letter {
-            bottom: 120px;
-            opacity: 1;
-            transform: translateY(0) scale(1.05);
-            z-index: 5;
-            box-shadow: 0 40px 80px rgba(255, 255, 255, 0.1);
-        }
-
-        .letter h2 {
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-            color: var(--rose-gold);
-            font-weight: 900;
-        }
-
-        .letter p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            font-weight: 600;
-        }
-
-        .envelope-label {
-            position: absolute;
-            bottom: 40px;
-            width: 100%;
-            text-align: center;
-            color: var(--champagne);
-            font-weight: 700;
-            z-index: 10;
-            pointer-events: none;
-            transition: opacity 0.3s;
-        }
-
-        .envelope.open .envelope-label {
-            opacity: 0;
-        }
-
-        .envelope-hint {
-            text-align: center;
-            margin-top: 30px;
-            font-weight: 700;
-            color: var(--rose-light);
-            animation: bounceSimple 2s infinite;
-        }
-
-        @keyframes bounceSimple {
-
-            0%,
-            100% {
-                transform: translateY(0);
-            }
-
-            50% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .timeline {
-            position: relative;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .timeline::before {
-            content: '';
-            position: absolute;
-            right: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(180deg, transparent, var(--rose), var(--gold), transparent);
-        }
-
-        .timeline-item {
-            display: flex;
-            gap: 30px;
-            margin-bottom: 60px;
-            padding-right: calc(50% + 40px);
-            position: relative;
-        }
-
-        .timeline-item:nth-child(even) {
-            padding-right: 0;
-            padding-left: calc(50% + 40px);
-            flex-direction: row-reverse;
-        }
-
-        .timeline-dot {
-            position: absolute;
-            right: calc(50% - 22px);
-            width: 44px;
-            height: 44px;
-            background: linear-gradient(135deg, var(--rose), #9b3060);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1;
-            box-shadow: 0 0 15px var(--rose);
-        }
-
-        .timeline-content {
-            background: var(--glass);
-            border: 1px solid var(--glass-border);
-            padding: 20px;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-        }
-
-        .gallery-grid {
-            columns: 3;
-            column-gap: 16px;
-        }
-
-        .gallery-item {
-            break-inside: avoid;
-            margin-bottom: 16px;
-            border-radius: 16px;
-            overflow: hidden;
-            cursor: pointer;
-            position: relative;
-            border: 1px solid var(--glass-border);
-            transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-
-        .gallery-item img {
-            width: 100%;
-            display: block;
-            filter: brightness(0.9);
-            transition: 0.4s;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03) rotate(0.5deg);
-        }
-
-        .gallery-item:hover img {
-            filter: brightness(1.1);
-        }
-
-        .gallery-item::after {
-            content: '💌';
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            background: rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: 0.3s;
-        }
-
-        .gallery-item:hover::after {
-            opacity: 1;
-        }
-
-        .photo-msg-overlay {
-            position: fixed;
-            inset: 0;
-            z-index: 5000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-        }
-
-        .photo-msg-overlay.show {
-            display: flex;
-        }
-
-        .photo-msg-content {
-            background: linear-gradient(135deg, #120a20, #200a30);
-            border: 1px solid var(--rose);
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            color: white;
-            font-weight: 700;
-            font-size: 1.5rem;
-            max-width: 80%;
-        }
-
-        .gift-box {
-            width: 160px;
-            height: 140px;
-            margin: 0 auto;
-            position: relative;
-            cursor: pointer;
-            transition: 0.4s ease;
-            filter: drop-shadow(0 0 20px rgba(232, 184, 53, 0.3));
-        }
-
-        .gift-box:hover {
-            transform: scale(1.1) rotate(-3deg);
-        }
-
-        .gift-top {
-            position: absolute;
-            top: -30px;
-            left: -10px;
-            width: 180px;
-            height: 55px;
-            background: linear-gradient(135deg, var(--rose), #9b3060);
-            border-radius: 10px;
-            z-index: 10;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .gift-body {
-            position: absolute;
-            bottom: 0;
-            width: 160px;
-            height: 140px;
-            background: linear-gradient(135deg, var(--rose), #9b3060);
-            border-radius: 10px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .gift-ribbon-v {
-            width: 40px;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.15);
-        }
-
-        .gift-message {
-            display: none;
-            margin-top: 40px;
-            font-size: 2rem;
-            font-weight: 900;
-            color: gold;
-            text-shadow: 0 0 20px gold;
-        }
-
-        .lightbox {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.95);
-            z-index: 10000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            backdrop-filter: blur(15px);
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        .lb-inner {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        #lbImg {
-            max-width: 85vw;
-            max-height: 80vh;
-            border-radius: 15px;
-            border: 2px solid var(--glass-border);
-        }
-
-        .lb-close {
-            position: absolute;
-            top: -50px;
-            right: 0;
-            color: white;
-            font-size: 2.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
-        }
-
-        .lb-nav {
-            background: rgba(255, 255, 255, 0.1);
-            border: none;
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        .lb-caption {
-            position: absolute;
-            bottom: -60px;
-            width: 100%;
-            text-align: center;
-            color: gold;
-            font-weight: 700;
-            font-size: 1.4rem;
-        }
-
-        .site-footer {
-            padding: 40px;
-            text-align: center;
-            border-top: 1px solid var(--glass-border);
-            color: rgba(255, 255, 255, 0.3);
-            font-size: 0.8rem;
-        }
-
-        .sparkle {
-            position: fixed;
-            pointer-events: none;
-            z-index: 10001;
-            animation: sparkleUp 0.8s ease-out forwards;
-        }
-
-        @keyframes sparkleUp {
-            0% {
-                opacity: 1;
-                transform: scale(1);
-            }
-
-            100% {
-                opacity: 0;
-                transform: translateY(-50px) scale(0.2);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .gallery-grid {
-                columns: 2;
-            }
-
-            .envelope {
-                transform: scale(0.8);
-            }
-
-            .hero-title {
-                transform: scale(0.9);
-            }
-
-            .lb-inner {
-                flex-direction: column;
-            }
-
-            .lb-nav {
-                position: absolute;
-                top: 50%;
-                transform: translateY(-50%);
-            }
-
-            .lb-prev {
-                left: -60px;
-            }
-
-            .lb-next {
-                right: -60px;
-            }
-
-            .custom-cursor,
-            .cursor-trail {
-                display: none;
-            }
-
-            body {
-                cursor: auto;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+  <script type="module" crossorigin src="/zozo/assets/index-DzjuaIPB.js"></script>
+  <link rel="stylesheet" crossorigin href="/zozo/assets/index-Cy2hQ_8P.css">
 </head>
 
 <body>
+
+    <!-- Custom Cursor -->
     <div id="customCursor" class="custom-cursor">✨</div>
     <div id="cursorTrail" class="cursor-trail"></div>
 
+    <!-- Loader Screen -->
     <div id="loader" class="loader">
         <div class="loader-content">
             <div class="loader-sheep-wrap">
                 <span class="loader-sheep">🐑</span>
-                <div class="loader-stars"><span>⭐</span><span>✨</span><span>🌟</span></div>
+                <div class="loader-stars">
+                    <span>⭐</span><span>✨</span><span>🌟</span>
+                </div>
             </div>
             <h2 class="loader-name">زوزو</h2>
             <p class="loader-text">كل سنة وانتى طيبة يحبيبة قلبى</p>
@@ -876,13 +34,15 @@
         </div>
     </div>
 
+    <!-- Particle Canvas -->
     <canvas id="particles"></canvas>
 
-    <section class="hero">
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
         <div class="parallax-bg" id="parallaxBg"></div>
-        <div class="hero-center">
+        <div class="hero-center" id="heroCenter">
             <div class="sheep-container">
-                <img src="sheep.png" alt="🐑" class="main-sheep" id="mainSheep" />
+                <img src="/zozo/sheep.png" alt="خروف العيد" class="main-sheep" id="mainSheep" />
                 <div class="sheep-shadow"></div>
             </div>
             <h1 class="hero-title">
@@ -892,30 +52,40 @@
             </h1>
             <p class="hero-sub">لأغلى إنسانة في الدنيا<br>خطيبتي وصاحبتي وكل حاجة في حياتي</p>
             <div class="typewriter-name" id="typewriterName"></div>
-            <button onclick="document.getElementById('countdown').scrollIntoView()" class="cta-button">
+            <a href="#countdown" class="cta-button">
                 <span>اكتشفي المفاجأة ✨</span>
                 <div class="btn-glow"></div>
-            </button>
+            </a>
         </div>
     </section>
 
-    <section class="section" id="countdown">
+    <!-- Countdown Section -->
+    <section class="section countdown-section" id="countdown">
         <div class="section-wrap">
             <h2 class="section-title reveal">باقي على العيد</h2>
             <div class="countdown-grid reveal">
-                <div class="countdown-box"><span class="count-num" id="countDays">00</span><span
-                        class="count-label">يوم</span></div>
-                <div class="countdown-box"><span class="count-num" id="countHours">00</span><span
-                        class="count-label">ساعة</span></div>
-                <div class="countdown-box"><span class="count-num" id="countMins">00</span><span
-                        class="count-label">دقيقة</span></div>
-                <div class="countdown-box"><span class="count-num" id="countSecs">00</span><span
-                        class="count-label">ثانية</span></div>
+                <div class="countdown-box">
+                    <span class="count-num" id="countDays">00</span>
+                    <span class="count-label">يوم</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="count-num" id="countHours">00</span>
+                    <span class="count-label">ساعة</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="count-num" id="countMins">00</span>
+                    <span class="count-label">دقيقة</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="count-num" id="countSecs">00</span>
+                    <span class="count-label">ثانية</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <section class="section" id="message">
+    <!-- Message Section -->
+    <section class="section message-section" id="message">
         <div class="envelope-wrapper reveal">
             <div class="envelope" id="envelope">
                 <div class="flap"></div>
@@ -923,186 +93,112 @@
                     <div class="envelope-label">كل عيد وإنتِ حبيبتي 💖💖</div>
                 </div>
                 <div class="letter">
-                    <h2>حبيبتـي زوزو</h2>
-                    <p>عيد أضحى سعيد علينا وإحنا سوا 💝<br>وإن شاء الله يكون بداية لكل عيد جاي وإنتِ مراتي
-                        وحبيبتي<br>وجودك في حياتي نعمة بدعي ربنا تدوملي دايمًا<br><br>العيد السنة دي مختلف عشان إنتِ فيه
-                        ❤️</p>
+                    <div class="msg-icon">💌</div>
+                    <h2>حبيبتـي <span class="name-zainab">زوزو</span></h2>
+                    <p>كل عيد وإنتِ أجمل حاجة حصلتلي 💝<br>
+                        عيد أضحى سعيد علينا وإحنا سوا<br>
+                        وإن شاء الله يكون بداية لكل عيد جاي وإنتِ مراتي وحبيبتي وصاحبتي<br>
+                        وجودك في حياتي نعمة بدعي ربنا تدوملي دايمًا<br><br>
+                        العيد السنة دي مختلف<br>
+                        عشان إنتِ فيه ❤️<br>
+                        كل سنة وإنتِ أقرب حد لقلبي<br>
+                        وكل عيد وإحنا بنكبر سوا في الحُب والونس والحكايات الحلوة</p>
+                    <div class="msg-hearts">
+                        <span>🌸</span><span>💖</span><span>✨</span>
+                    </div>
+                    <div class="msg-signature">— بكل حبي ❤️</div>
                 </div>
             </div>
-            <p class="envelope-hint">افتحى الرسالة يروحى 💌</p>
+            <p class="envelope-hint">افتحى المسدج يروحى 💌</p>
         </div>
     </section>
 
-    <section class="section" id="gallery">
+    <!-- Timeline Section -->
+    <section class="section timeline-section" id="timeline">
+        <div class="section-wrap">
+            <div class="timeline" id="timelineEl">
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot">🌙</div>
+                    <div class="timeline-content">
+                        <h3>عيد الأضحى ٢٠٢٦</h3>
+                        <p>أول عيد أضحى نعيشه مخطوبين وأنا أسعد واحد في الدنيا 🐑</p>
+                    </div>
+                </div>
+                <div class="timeline-item reveal">
+                    <div class="timeline-dot">💒</div>
+                    <div class="timeline-content">
+                        <h3>المستقبل</h3>
+                        <p>وكمان هيجي يوم نبني بيتنا الصغير الحلو ربنا يوفقنا 🤍</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="section gallery-section" id="gallery">
         <div class="section-wrap">
             <h2 class="section-title reveal">ذكرياتنا <span class="gold">الجميلة</span> 📸</h2>
             <div class="gallery-grid reveal" id="galleryGrid"></div>
         </div>
     </section>
 
+    <!-- Hidden message overlay for gallery -->
     <div class="photo-msg-overlay" id="photoMsgOverlay">
         <div class="photo-msg-content" id="photoMsgContent"></div>
     </div>
 
-    <section class="section" id="gift">
+    <!-- Gift Section -->
+    <section class="section gift-section" id="gift">
         <div class="section-wrap text-center">
-            <h2 class="section-title reveal">مفاجأة خاصة 🎁</h2>
-            <div class="gift-box" id="giftBox">
-                <div class="gift-top"></div>
-                <div class="gift-body">
-                    <div class="gift-ribbon-v"></div>
+            <h2 class="section-title reveal">مفاجأة خاصة <span class="gold">🎁</span></h2>
+            <div class="gift-wrapper reveal" id="giftWrapper">
+                <div class="gift-box" id="giftBox">
+                    <div class="gift-top">
+                        <div class="gift-bow">
+                            <div class="bow-left"></div>
+                            <div class="bow-right"></div>
+                        </div>
+                    </div>
+                    <div class="gift-body">
+                        <div class="gift-ribbon-v"></div>
+                    </div>
                 </div>
+                <p class="gift-hint">اضغطى على الهدية بس علي الصوت 😂</p>
             </div>
-            <p class="gift-hint" id="giftHint" style="margin-top:20px; color:gold;">اضغطى على الهدية بس علي الصوت 😂</p>
-            <div class="gift-message" id="giftMessage">💖 كل سنة وانتى طيبة ياحلى زوزو 💖</div>
-            <div class="confetti-burst" id="confettiBurst"></div>
+            <div class="gift-message" id="giftMessage">
+                <div class="confetti-burst" id="confettiBurst"></div>
+                💖 كل سنة وانتى طيبة ياحلى زوزو 💖
+            </div>
         </div>
     </section>
 
+    <!-- Footer -->
     <footer class="site-footer">
-        <p>صُنع بكل حب لـ زوزو 🐑 بمناسبة عيد الأضحى ٢٠٢٦</p>
+        <p>صُنع بكل حب لـ <span class="name-zainab">زوزو</span> 🐑 بمناسبة عيد الأضحى ٢٠٢٦</p>
     </footer>
 
+    <!-- Lightbox -->
     <div class="lightbox" id="lightbox">
+        <button class="lb-close" id="lbClose">✕</button>
         <div class="lb-inner">
-            <button class="lb-close" id="lbClose">✕</button>
-            <button class="lb-nav" id="lbPrev">‹</button>
-            <img src="" id="lbImg" />
-            <button class="lb-nav" id="lbNext">›</button>
-            <div id="lbCaption" class="lb-caption"></div>
+            <button class="lb-nav lb-prev" id="lbPrev">‹</button>
+            <img src="" alt="" id="lbImg" />
+            <button class="lb-nav lb-next" id="lbNext">›</button>
         </div>
+        <div id="lbCaption" class="lb-caption"></div>
     </div>
 
+    <!-- Sheep Game Result -->
+    <div class="sheep-game-msg" id="sheepGameMsg">
+        <div>🐑 أيوه! أنا بحبك أنا كمان يا زوزو! 🐑</div>
+    </div>
+
+    <!-- Surprise Music -->
     <audio id="surpriseSong" loop>
-        <source src="song.ogg" type="audio/ogg">
+        <source src="WhatsApp Ptt 2026-05-26 at 1.04.25 AM.ogg" type="audio/ogg">
     </audio>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <script>
-        gsap.registerPlugin(ScrollTrigger);
-
-        const IMAGES = [
-            "WhatsApp Image 2026-05-25 at 10.24.05 PM.jpeg", "WhatsApp Image 2026-05-25 at 10.24.06 PM.jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.07 PM (1).jpeg", "WhatsApp Image 2026-05-25 at 10.24.07 PM.jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.08 PM.jpeg", "WhatsApp Image 2026-05-25 at 10.24.09 PM (1).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.09 PM (2).jpeg", "WhatsApp Image 2026-05-25 at 10.24.09 PM (3).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.09 PM (4).jpeg", "WhatsApp Image 2026-05-25 at 10.24.09 PM (5).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.09 PM.jpeg", "WhatsApp Image 2026-05-25 at 10.24.10 PM (1).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.10 PM (2).jpeg", "WhatsApp Image 2026-05-25 at 10.24.10 PM (3).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.10 PM (4).jpeg", "WhatsApp Image 2026-05-25 at 10.24.10 PM (5).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.10 PM.jpeg", "WhatsApp Image 2026-05-25 at 10.24.11 PM (1).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.11 PM (2).jpeg", "WhatsApp Image 2026-05-25 at 10.24.11 PM (3).jpeg",
-            "WhatsApp Image 2026-05-25 at 10.24.11 PM (4).jpeg", "WhatsApp Image 2026-05-25 at 10.24.11 PM.jpeg"
-        ];
-        const PHOTO_MESSAGES = ["بحبك 💖", "ربنا يديم وجودك ❤️", "كل سنة وانتى طيبة 💖", "عيد مبارك لاحلى زوزو ❤️"];
-
-        // Loader
-        window.addEventListener('load', () => setTimeout(() => document.getElementById('loader').classList.add('hidden'), 2000));
-
-        // Particles
-        const canvas = document.getElementById('particles');
-        const ctx = canvas.getContext('2d');
-        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight };
-        resize(); window.addEventListener('resize', resize);
-        const parts = Array.from({ length: 40 }, () => ({
-            x: Math.random() * canvas.width, y: Math.random() * canvas.height,
-            size: Math.random() * 15 + 10, vy: Math.random() * 0.5 + 0.1, vx: (Math.random() - 0.5) * 0.5,
-            emoji: ['🐑', '💖', '✨', '⭐'][Math.floor(Math.random() * 4)]
-        }));
-        function loop() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); ctx.globalAlpha = 0.3;
-            parts.forEach(p => { p.y -= p.vy; p.x += p.vx; if (p.y < -20) p.y = canvas.height + 20; ctx.font = p.size + 'px serif'; ctx.fillText(p.emoji, p.x, p.y); });
-            requestAnimationFrame(loop);
-        } loop();
-
-        // Cursor
-        const cur = document.getElementById('customCursor'), trail = document.getElementById('cursorTrail');
-        document.addEventListener('mousemove', e => {
-            cur.style.left = e.clientX + 'px'; cur.style.top = e.clientY + 'px';
-            setTimeout(() => { trail.style.left = e.clientX + 'px'; trail.style.top = e.clientY + 'px'; }, 80);
-        });
-
-        // Typewriter
-        setTimeout(() => {
-            let i = 0, txt = '♡ زوزو ♡', el = document.getElementById('typewriterName');
-            let t = setInterval(() => { el.textContent += txt[i++]; if (i >= txt.length) clearInterval(t); }, 150);
-        }, 2500);
-
-        // Animations
-        gsap.from('.line1', { opacity: 0, x: -50, duration: 1, delay: 2.2 });
-        gsap.from('.line2', { opacity: 0, scale: 0.5, duration: 1, delay: 2.5, ease: 'back.out' });
-        gsap.from('.line3', { opacity: 0, x: 50, duration: 1, delay: 2.8 });
-
-        // Countdown
-        function tick() {
-            const diff = new Date('2026-05-27T00:00:00') - new Date();
-            if (diff < 0) return;
-            document.getElementById('countDays').textContent = String(Math.floor(diff / 864e5)).padStart(2, '0');
-            document.getElementById('countHours').textContent = String(Math.floor((diff % 864e5) / 36e5)).padStart(2, '0');
-            document.getElementById('countMins').textContent = String(Math.floor((diff % 36e5) / 6e4)).padStart(2, '0');
-            document.getElementById('countSecs').textContent = String(Math.floor((diff % 6e4) / 1000)).padStart(2, '0');
-        } setInterval(tick, 1000); tick();
-
-        // Reveal
-        document.querySelectorAll('.reveal').forEach(el => {
-            gsap.from(el, { scrollTrigger: { trigger: el, start: 'top 85%' }, y: 50, opacity: 0, duration: 1 });
-        });
-
-        // Envelope
-        document.getElementById('envelope').addEventListener('click', function () {
-            this.classList.toggle('open');
-            if (this.classList.contains('open')) launchConfetti();
-        });
-
-        // Gallery
-        const grid = document.getElementById('galleryGrid');
-        IMAGES.forEach((src, i) => {
-            const div = document.createElement('div'); div.className = 'gallery-item';
-            div.innerHTML = `<img src="${src}" loading="lazy">`;
-            div.onclick = () => {
-                const ov = document.getElementById('photoMsgOverlay');
-                document.getElementById('photoMsgContent').textContent = PHOTO_MESSAGES[i % PHOTO_MESSAGES.length];
-                ov.classList.add('show');
-                setTimeout(() => { ov.classList.remove('show'); openLB(i); }, 2200);
-            };
-            grid.appendChild(div);
-        });
-
-        // Lightbox
-        let currentIdx = 0;
-        function openLB(i) {
-            currentIdx = i; const lb = document.getElementById('lightbox');
-            document.getElementById('lbImg').src = IMAGES[i];
-            document.getElementById('lbCaption').textContent = PHOTO_MESSAGES[i % PHOTO_MESSAGES.length];
-            lb.classList.add('active');
-        }
-        document.getElementById('lbClose').onclick = () => document.getElementById('lightbox').classList.remove('active');
-        document.getElementById('lbNext').onclick = () => openLB((currentIdx + 1) % IMAGES.length);
-        document.getElementById('lbPrev').onclick = () => openLB((currentIdx - 1 + IMAGES.length) % IMAGES.length);
-
-        // Gift
-        document.getElementById('giftBox').onclick = function () {
-            gsap.to('.gift-top', { y: -100, rotation: 30, opacity: 0, duration: 0.6 });
-            gsap.to(this, { scale: 0, opacity: 0, duration: 0.4, delay: 0.3 });
-            setTimeout(() => {
-                document.getElementById('giftMessage').style.display = 'block';
-                document.getElementById('giftHint').style.display = 'none';
-                launchConfetti(); document.getElementById('surpriseSong').play();
-            }, 800);
-        };
-
-        function launchConfetti() {
-            const b = document.getElementById('confettiBurst');
-            for (let i = 0; i < 30; i++) {
-                const s = document.createElement('span'); s.innerText = '🌸';
-                s.style.cssText = `position:absolute;left:50%;top:50%;font-size:1.5rem;pointer-events:none;`;
-                b.appendChild(s);
-                gsap.to(s, { x: (Math.random() - 0.5) * 400, y: (Math.random() - 0.5) * 400, opacity: 0, duration: 1.5, onComplete: () => s.remove() });
-            }
-        }
-    </script>
+
 </body>
 
 </html>
